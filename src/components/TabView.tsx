@@ -1,6 +1,7 @@
 import * as Tabs from '@radix-ui/react-tabs';
 import { Tab, useTabContext } from "./TabContextProvider.tsx";
 import styled from "styled-components";
+import CodeMirrorEditor from "./CodeMirrorEditor.tsx";
 
 const StyledTabs = styled(Tabs.Root)`
   display: flex;
@@ -10,7 +11,6 @@ const StyledTabs = styled(Tabs.Root)`
 
 const TabList = styled(Tabs.List)`
   display: flex;
-  //background: #2d2d2d;
   padding: 0.5rem;
   overflow-x: auto;
 `;
@@ -30,11 +30,11 @@ const TabTrigger = styled(Tabs.Trigger)<{ $active?: boolean }>`
   }
 `;
 
-// const TabContent = styled(Tabs.Content)`
-//   flex: 1;
-//   padding: 1rem;
-//   background: #1e1e1e;
-// `;
+const TabContent = styled(Tabs.Content)`
+  flex: 1;
+  padding: 1rem;
+  background: #1e1e1e;
+`;
 
 const AddButton = styled.button`
   margin-left: auto;
@@ -100,12 +100,11 @@ export const TabView = () => {
         <AddButton onClick={handleAddTab}>+</AddButton>
       </TabList>
 
-      {/*{state.tabs.map(tab => (*/}
-      {/*  <Tabs.Content key={tab.id} value={tab.id}>*/}
-      {/*    /!* Monaco editor can go here *!/*/}
-      {/*    <div>{tab.value}</div>*/}
-      {/*  </Tabs.Content>*/}
-      {/*))}*/}
+      {state.tabs.map(tab => (
+        <TabContent value={tab.id} key={tab.id}>
+          <CodeMirrorEditor value={tab.value} onChange={(val) => dispatch({type: "UPDATE_TAB_VALUE", payload: {id: tab.id, value: val}}) }></CodeMirrorEditor>
+        </TabContent>
+      ))}
     </StyledTabs>
   );
 };
