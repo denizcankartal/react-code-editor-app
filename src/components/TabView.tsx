@@ -66,7 +66,6 @@ function createNewTab(tabCount: number): Tab {
     id,
     title: `Tab-${tabCount}`,
     value: `// write your code here TAB - ${id}`,
-    language: 'javascript',
   };
 }
 

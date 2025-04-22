@@ -4,7 +4,6 @@ export interface Tab {
   id: string;
   title: string;
   value: string;
-  language: string;
 }
 
 interface TabState {
@@ -17,7 +16,6 @@ type TabAction =
   | { type: 'CLOSE_TAB'; payload: { id: string } }
   | { type: 'SET_ACTIVE_TAB'; payload: { id: string } }
   | { type: 'UPDATE_TAB_VALUE'; payload: { id: string; value: string } }
-  | { type: 'UPDATE_TAB_LANGUAGE'; payload: { id: string; language: string } };
 
 const TabContext = createContext<{
   state: TabState;
@@ -58,14 +56,6 @@ const tabReducer = (state: TabState, action: TabAction): TabState => {
         ...state,
         tabs: state.tabs.map(tab =>
           tab.id === action.payload.id ? { ...tab, value: action.payload.value } : tab
-        ),
-      };
-
-    case 'UPDATE_TAB_LANGUAGE':
-      return {
-        ...state,
-        tabs: state.tabs.map(tab =>
-          tab.id === action.payload.id ? { ...tab, language: action.payload.language } : tab
         ),
       };
 
