@@ -10,7 +10,6 @@ const StyledTabs = styled(Tabs.Root)`
 
 const TabList = styled(Tabs.List)`
   display: flex;
-  //background: #2d2d2d;
   padding: 0.5rem;
   overflow-x: auto;
 `;
@@ -29,12 +28,6 @@ const TabTrigger = styled(Tabs.Trigger)<{ $active?: boolean }>`
     background: #444;
   }
 `;
-
-// const TabContent = styled(Tabs.Content)`
-//   flex: 1;
-//   padding: 1rem;
-//   background: #1e1e1e;
-// `;
 
 const AddButton = styled.button`
   margin-left: auto;
@@ -65,8 +58,7 @@ function createNewTab(tabCount: number): Tab {
   return {
     id,
     title: `Tab-${tabCount}`,
-    value: `// write your code here TAB - ${id}`,
-    language: 'javascript',
+    value: `// write your code here TAB - ${id}`
   };
 }
 
@@ -99,13 +91,6 @@ export const TabView = () => {
         ))}
         <AddButton onClick={handleAddTab}>+</AddButton>
       </TabList>
-
-      {/*{state.tabs.map(tab => (*/}
-      {/*  <Tabs.Content key={tab.id} value={tab.id}>*/}
-      {/*    /!* Monaco editor can go here *!/*/}
-      {/*    <div>{tab.value}</div>*/}
-      {/*  </Tabs.Content>*/}
-      {/*))}*/}
     </StyledTabs>
   );
 };
